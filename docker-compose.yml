@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+  localstack:
+    image: localstack/localstack:0.10.6
+    ports:
+      - 4576:4576
+      - 4575:4575
+      - 4574:4574
+    environment:
+      - SERVICES=sns,sqs,lambda
+      - LAMBDA_EXECUTOR=docker
+      - AWS_DEFAULT_REGION=us-east-1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEBUG=1
+      - AWS_ACCESS_KEY_ID=anykey
+      - AWS_SECRET_ACCESS_KEY=anysecretkey
+    volumes:
+      - "./tmp/localstack:/tmp/localstack"
+      - "./bin/linux_amd64:/bin/linux_amd64"
+      - ./localstack_setup:/docker-entrypoint-initaws.d/
+      - "./scripts/:/scripts"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - dev
+
+networks:
+  dev:
+    name: dev

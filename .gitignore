@@ -1,0 +1,21 @@
+bin
+vendor
+tmp
+coverage.out
+coverage.html
+
+# Terraform
+## Local .terraform directories
+**/.terraform/*
+## .tfstate files
+**.tfstate
+**.tfstate.*
+## Crash log files
+crash.log
+
+**/.env/*
+.env
+lambda-example.zip
+dump.rdb
+
+**/.vscode/*
