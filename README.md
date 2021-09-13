@@ -49,6 +49,18 @@ Run the dependencies:
 docker-compose up
 ```
 
+Testing locally:
 ```
 awslocal sns publish --topic-arn arn:aws:sns:us-east-1:000000000000:sns-topic-example --message "{\"match\":{\"id\": 1}}"
+```
+
+Creating aws infra with terraform:
+```
+terraform apply --auto-approve
+```
+
+Testing in AWS:
+```
+SNS_TOPIC=aws sns list-topics
+aws sns publish --topic-arn $SNS_TOPIC --message "{\"whatever\":{\"id\": 1}}"
 ```
